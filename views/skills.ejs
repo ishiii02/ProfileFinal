@@ -3,27 +3,30 @@
     <h1 class="text-3xl font-bold text-gray-900 text-center mb-12">My Skills</h1>
     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
       <% skills.forEach(function(skill) { %>
+        <%
+          // Determine bar width based on level
+          const levelMap = { Beginner: '25%', Intermediate: '60%', Advanced: '90%' };
+          const barWidth = levelMap[skill.level] || '50%';
+
+          // Accessible color coding
+          const levelColor = {
+            Beginner:     'bg-yellow-500',
+            Intermediate: 'bg-blue-500',
+            Advanced:     'bg-green-500'
+          }[skill.level] || 'bg-blue-500';
+        %>
         <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
           <div class="flex items-center mb-4">
-            <div class="h-10 w-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">
-              <% if (skill.name.toLowerCase() === "javascript") { %>
-                <code>js</code>
-              <% } else if (skill.name.toLowerCase() === "html5") { %>
-                <code>&lt;/&gt;</code>
-              <% } else if (skill.name.toLowerCase() === "css3") { %>
-                <code>&lt;style/&gt;</code>
-              <% } else if (skill.name.toLowerCase() === "node.js") { %>
-                <code>?</code>
-              <% } else if (skill.name.toLowerCase() === "express.js") { %>
-                <code>??</code>
-              <% } else if (skill.name.toLowerCase() === "ejs") { %>
-                <code>&lt;%</code>
-              <% } else if (skill.name.toLowerCase() === "tailwind css") { %>
-                <code>?</code>
-              <% } else if (skill.name.toLowerCase() === "git") { %>
-                <code>?</code>
-              <% } else { %>
-                <code>%</code>
+            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3 font-mono text-xs font-bold select-none">
+              <% if (skill.name.toLowerCase() === 'javascript') { %>JS
+              <% } else if (skill.name.toLowerCase() === 'html5') { %>HTM
+              <% } else if (skill.name.toLowerCase() === 'css3') { %>CSS
+              <% } else if (skill.name.toLowerCase() === 'node.js') { %>NOD
+              <% } else if (skill.name.toLowerCase() === 'express.js') { %>EXP
+              <% } else if (skill.name.toLowerCase() === 'ejs') { %>EJS
+              <% } else if (skill.name.toLowerCase() === 'tailwind css') { %>TW
+              <% } else if (skill.name.toLowerCase() === 'git') { %>GIT
+              <% } else { %><%= skill.name.substring(0, 3).toUpperCase() %>
               <% } %>
             </div>
             <div>
@@ -31,22 +34,38 @@
               <p class="text-sm text-gray-500"><%= skill.level %></p>
             </div>
           </div>
-          <div class="w-full bg-gray-200 rounded-full h-2.5">
-            <div class="bg-blue-600 h-2.5 rounded-full" style="width: <%= skill.level === 'Beginner' ? '25%' : skill.level === 'Intermediate' ? '50%' : '75%' %>"></div>
+
+          <!-- Accessible progress bar -->
+          <div
+            class="w-full bg-gray-200 rounded-full h-2.5"
+            role="progressbar"
+            aria-valuenow="<%= barWidth.replace('%','') %>"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-label="<%= skill.name %> proficiency: <%= skill.level %>"
+          >
+            <div class="<%= levelColor %> h-2.5 rounded-full transition-all duration-500" style="width: <%= barWidth %>"></div>
           </div>
         </div>
       <% }) %>
+    </div>
+
+    <!-- Legend -->
+    <div class="mt-10 flex flex-wrap justify-center gap-6 text-sm text-gray-600">
+      <div class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-yellow-500"></span> Beginner</div>
+      <div class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-blue-500"></span> Intermediate</div>
+      <div class="flex items-center gap-2"><span class="inline-block w-3 h-3 rounded-full bg-green-500"></span> Advanced</div>
     </div>
   </div>
 </section>
 
 <section class="bg-gray-50 py-12">
-  <div class="max-w-4xl mx-auto px-4">
-    <h2 class="text-2xl font-semibold text-gray-800 text-center mb-10">Skill Levels</h2>
-    <p class="text-gray-600 text-center max-w-xl mx-auto">
-      I categorize my proficiency into three levels: Beginner (foundational knowledge), 
-      Intermediate (comfortable with professional projects), and Advanced (expert-level, 
-      capable of leading and architecting complex solutions).
+  <div class="max-w-4xl mx-auto px-4 text-center">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">Skill Levels Explained</h2>
+    <p class="text-gray-600 max-w-xl mx-auto">
+      <strong>Beginner</strong> — foundational knowledge and learning.
+      <strong>Intermediate</strong> — comfortable delivering production-quality work.
+      <strong>Advanced</strong> — expert-level, capable of leading and architecting complex solutions.
     </p>
   </div>
 </section>
