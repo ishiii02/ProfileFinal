@@ -1,0 +1,26 @@
+{
+  "name": "cluzaprofilefinal",
+  "version": "1.0.0",
+  "description": "A simple and professional portfolio website using MVC architecture",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "concurrently \"npm:start\" \"npm:dev:css\"",
+    "dev:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --watch",
+    "build:css": "tailwindcss -i ./public/css/input.css -o ./public/css/style.css --minify"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "ejs": "^3.1.9"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.3.2",
+    "postcss": "^8.4.24",
+    "autoprefixer": "^10.4.14",
+    "nodemon": "^3.0.1",
+    "concurrently": "^8.2.0"
+  },
+  "keywords": ["portfolio", "mvc", "nodejs", "express", "ejs", "tailwind"],
+  "author": "Nash Francis",
+  "license": "MIT"
+}

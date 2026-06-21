@@ -1,0 +1,52 @@
+<section class="py-16">
+  <div class="max-w-4xl mx-auto px-4">
+    <h1 class="text-3xl font-bold text-gray-900 text-center mb-12">My Skills</h1>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <% skills.forEach(function(skill) { %>
+        <div class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+          <div class="flex items-center mb-4">
+            <div class="h-10 w-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mr-3">
+              <% if (skill.name.toLowerCase() === "javascript") { %>
+                <code>js</code>
+              <% } else if (skill.name.toLowerCase() === "html5") { %>
+                <code>&lt;/&gt;</code>
+              <% } else if (skill.name.toLowerCase() === "css3") { %>
+                <code>&lt;style/&gt;</code>
+              <% } else if (skill.name.toLowerCase() === "node.js") { %>
+                <code>?</code>
+              <% } else if (skill.name.toLowerCase() === "express.js") { %>
+                <code>??</code>
+              <% } else if (skill.name.toLowerCase() === "ejs") { %>
+                <code>&lt;%</code>
+              <% } else if (skill.name.toLowerCase() === "tailwind css") { %>
+                <code>?</code>
+              <% } else if (skill.name.toLowerCase() === "git") { %>
+                <code>?</code>
+              <% } else { %>
+                <code>%</code>
+              <% } %>
+            </div>
+            <div>
+              <h3 class="font-semibold text-gray-900"><%= skill.name %></h3>
+              <p class="text-sm text-gray-500"><%= skill.level %></p>
+            </div>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-2.5">
+            <div class="bg-blue-600 h-2.5 rounded-full" style="width: <%= skill.level === 'Beginner' ? '25%' : skill.level === 'Intermediate' ? '50%' : '75%' %>"></div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  </div>
+</section>
+
+<section class="bg-gray-50 py-12">
+  <div class="max-w-4xl mx-auto px-4">
+    <h2 class="text-2xl font-semibold text-gray-800 text-center mb-10">Skill Levels</h2>
+    <p class="text-gray-600 text-center max-w-xl mx-auto">
+      I categorize my proficiency into three levels: Beginner (foundational knowledge), 
+      Intermediate (comfortable with professional projects), and Advanced (expert-level, 
+      capable of leading and architecting complex solutions).
+    </p>
+  </div>
+</section>
